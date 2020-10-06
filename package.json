@@ -1,0 +1,20 @@
+{
+  "name": "mmo",
+  "version": "1.0.0",
+  "description": "cool app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "GADS2020"
+  ],
+  "author": "webfintech34",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cowsay": "^1.4.0",
+    "express": "^4.17.1"
+  }
+}
