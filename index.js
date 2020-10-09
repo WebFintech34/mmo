@@ -8,6 +8,11 @@ const app = express()
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')))
+/*backend routes*/
+
+const authRoutes = require("./backend/routes/auth");
+
+app.use("/", authRoutes);
 
 // Serve our api route /cow that returns a custom talking text cow
 app.get('/api/cow/:say', cors(), async (req, res, next) => {
