@@ -9,3 +9,5 @@ cool app
 - ```git pull origin develop ```to make sure to start with the latest codebase
 - ``` npm install ``` to install the dependencies
 - ``` npm run server ``` 
+ ### Get started on the issues 
+ Refer to the contribution guidelines for this project [here](CONTRIBUTION.md)
