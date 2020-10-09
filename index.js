@@ -2,9 +2,20 @@ const express = require('express')
 const cowsay = require('cowsay')
 const cors = require('cors')
 const path = require('path')
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 
 // Create the server
 const app = express()
+//database connection
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("database connected"))
+  .catch((err) => console.log(`error ${err}`));
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')))
