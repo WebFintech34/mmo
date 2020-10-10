@@ -4,6 +4,8 @@ const cors = require('cors')
 const path = require('path')
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const router = require('./backend/routes');
+const bodyParser = require('body-parser')
 dotenv.config();
 
 // Create the server
@@ -19,11 +21,15 @@ mongoose
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')))
+//
+
+app.use(bodyParser.json())
+
 /*backend routes*/
+router(app);
 
-const authRoutes = require("./backend/routes/auth");
-
-app.use("/", authRoutes);
+// API docs
+app.use('/apidoc', express.static('public/docs'))
 
 // Serve our api route /cow that returns a custom talking text cow
 app.get('/api/cow/:say', cors(), async (req, res, next) => {
