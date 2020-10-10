@@ -4,6 +4,7 @@ const cors = require('cors')
 const path = require('path')
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const router = require('./backend/routes');
 dotenv.config();
 
 // Create the server
@@ -21,9 +22,7 @@ mongoose
 app.use(express.static(path.join(__dirname, 'client/build')))
 /*backend routes*/
 
-const authRoutes = require("./backend/routes/auth");
-
-app.use("/", authRoutes);
+router(app);
 
 // Serve our api route /cow that returns a custom talking text cow
 app.get('/api/cow/:say', cors(), async (req, res, next) => {
