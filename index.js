@@ -28,6 +28,9 @@ app.use(bodyParser.json())
 /*backend routes*/
 router(app);
 
+// API docs
+app.use('/apidoc', express.static('public/docs'))
+
 // Serve our api route /cow that returns a custom talking text cow
 app.get('/api/cow/:say', cors(), async (req, res, next) => {
   try {

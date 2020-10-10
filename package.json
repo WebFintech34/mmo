@@ -9,7 +9,8 @@
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "docs": "apidoc -e node_modules -o public/docs"
   },
   "keywords": [
     "GADS2020"
