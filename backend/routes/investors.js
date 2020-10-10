@@ -1,5 +1,5 @@
-const { test } = require('../controllers/investors')
+const {  createInvestor } = require('../controllers/investors')
 
 module.exports = (router, prefix) => {
-  router.get(`${prefix}/`, test) 
+  router.post(`${prefix}/create`, createInvestor) 
 }

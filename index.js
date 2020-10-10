@@ -5,6 +5,7 @@ const path = require('path')
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const router = require('./backend/routes');
+const bodyParser = require('body-parser')
 dotenv.config();
 
 // Create the server
@@ -20,8 +21,11 @@ mongoose
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')))
-/*backend routes*/
+//
 
+app.use(bodyParser.json())
+
+/*backend routes*/
 router(app);
 
 // Serve our api route /cow that returns a custom talking text cow
