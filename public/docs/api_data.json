@@ -28,6 +28,56 @@
     "name": ""
   },
   {
+    "type": "get",
+    "url": "/investor/all",
+    "title": "investor/all",
+    "name": "invester/all",
+    "group": "Investor",
+    "description": "<p>Returns a list of all investor users.</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Array of objects of investor users</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "\n{\n   \"statusCode\": 200,\n   \"message\":  [\n      {\n         \"name\": \"test\",\n          \"gender\": \"test\",\n         \"email\": \"email@mmo.com\",\n         \"picture\": \"test\",\n          \"password\": \"test\",\n          \"phoneNumber\": \"test\",\n         \"birthDate\": \"1989-12-31T22:00:00.000Z\",\n         \"location\": \"test\",\n         \"isNewbie\": false,\n         \"amountWillingToRisk\": \"100\",\n         \"isAwareOfScams\": false,\n         \"hasBeenScammed\": false\n    },\n       ... \n       ]",
+          "type": "String"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "500 Internal server error": [
+          {
+            "group": "500 Internal server error",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Internal server error.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n   \"statusCode\": 500,\n   \"message\": \"Internal server error\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./backend/controllers/investors.js",
+    "groupTitle": "Investor"
+  },
+  {
     "type": "post",
     "url": "/investor/create/",
     "title": "investor/create",
@@ -176,11 +226,11 @@
   },
   {
     "type": "get",
-    "url": "/investor/fetch",
-    "title": "investor/fetch",
-    "name": "invester/fetch",
-    "group": "Investor",
-    "description": "<p>Returns a list of all investor users.</p>",
+    "url": "/trader/all",
+    "title": "trader/all",
+    "name": "invester/all",
+    "group": "Trader",
+    "description": "<p>Returns a list of all trader users.</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -189,14 +239,14 @@
             "type": "Object[]",
             "optional": false,
             "field": "message",
-            "description": "<p>Array of objects of investor users</p>"
+            "description": "<p>Array of objects of trader users</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "\n{\n   \"statusCode\": 200,\n   \"message\":  [\n      {\n         \"name\": \"test\",\n          \"gender\": \"test\",\n         \"email\": \"email@mmo.com\",\n         \"picture\": \"test\",\n          \"password\": \"test\",\n          \"phoneNumber\": \"test\",\n         \"birthDate\": \"1989-12-31T22:00:00.000Z\",\n         \"location\": \"test\",\n         \"isNewbie\": false,\n         \"amountWillingToRisk\": \"100\",\n         \"isAwareOfScams\": false,\n         \"hasBeenScammed\": false\n    },\n       ... \n       ]",
+          "content": "\n{\n   \"statusCode\": 200,\n   \"message\":  [\n      {\n         \"name\": \"test\",\n         \"gender\": \"test\",\n         \"email\": \"email@mmo.com\",\n         \"picture\": \"test\",\n         \"password\": \"test\",\n         \"phoneNumber\": \"test\",\n         \"birthDate\": \"1989-12-31T22:00:00.000Z\",\n         \"location\": \"test\",\n         \"tradingStyle\": \"test\",\n         \"yearsOfExperience\": \"test\",\n         \"brokersUsed\": \"test\",\n         \"isCommittedToEndScams\": true\n    },\n       ... \n       ]",
           "type": "String"
         }
       ]
@@ -221,7 +271,154 @@
       ]
     },
     "version": "0.0.0",
-    "filename": "./backend/controllers/investors.js",
-    "groupTitle": "Investor"
+    "filename": "./backend/controllers/traders.js",
+    "groupTitle": "Trader"
+  },
+  {
+    "type": "post",
+    "url": "/trader/create/",
+    "title": "trader/create",
+    "name": "trader/create",
+    "group": "Trader",
+    "description": "<p>Creates a trader user.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>name of trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "gender",
+            "description": "<p>gender of trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email of trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "picture",
+            "description": "<p>picture of trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>password of trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneNumber",
+            "description": "<p>phone number of trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "birthDate",
+            "description": "<p>date of birth of trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "location",
+            "description": "<p>location of trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "tradingStyle",
+            "description": "<p>trading style of the trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "yearsOfExperience",
+            "description": "<p>years of experience of the trader.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "brokersUsed",
+            "description": "<p>list of brokers used.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "isCommittedToEndScams",
+            "description": "<p>whether trader is committed to ending scams or not.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"name\": \"test\",\n  \"gender\": \"test\",\n  \"email\": \"email@mmo.com\",\n  \"picture\": \"test\",\n  \"password\": \"test\",\n  \"phoneNumber\": \"test\",\n  \"birthDate\": \"01-01-1990\",\n  \"location\": \"test\",\n  \"tradingStyle\": \"test\",\n  \"yearsOfExperience\": \"test\",\n  \"brokersUsed\": \"test\",\n  \"isCommittedToEndScams\": true\n\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Trader created successfully..</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "\n{\n   \"statusCode\": 200,\n   \"message\": \"Trader created successfully.\"\n}",
+          "type": "String"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "500 Internal server error": [
+          {
+            "group": "500 Internal server error",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Internal server error.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "{\n   \"statusCode\": 500,\n   \"message\": \"Internal server error\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./backend/controllers/traders.js",
+    "groupTitle": "Trader"
   }
 ]

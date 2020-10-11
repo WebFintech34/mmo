@@ -5,10 +5,6 @@ body {
   max-width: 1280px;
 }
 
-pre {
-  background-color: #3a3a3a;
-}
-
 body, p, a, div, th, td {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 400;
