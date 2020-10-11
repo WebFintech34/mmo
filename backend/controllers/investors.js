@@ -49,7 +49,6 @@ const { errors } = require('../helpers')
  * @apiError (500 Internal server error) message Internal server error.
  *
  * @apiErrorExample Error-Response:
- *
  *  {
  *     "statusCode": 500,
  *     "message": "Internal server error"
@@ -80,9 +79,85 @@ const createInvestor = async (req, res) => {
   } catch (error) {
     console.log(error)
   }
-  res.json({ statusCode: 500, message: errors.internal_server_error })
+  return res.json({ statusCode: 500, message: errors.internal_server_error })
+}
+
+
+
+/**
+ * @api {get} /investor/all investor/all
+ * @apiName invester/all
+ * @apiGroup Investor
+ *
+ * @apiDescription Returns a list of all investor users.
+ *
+ * @apiSuccess {Object[]} message Array of objects of investor users
+ *
+ * @apiSuccessExample {String} Success-Response:
+ *
+ *  {
+ *     "statusCode": 200,
+ *     "message":  [
+ *        {
+ *           "name": "test",
+ *            "gender": "test",
+ *           "email": "email@mmo.com",
+ *           "picture": "test",
+ *            "password": "test",
+ *            "phoneNumber": "test",
+ *           "birthDate": "1989-12-31T22:00:00.000Z",
+ *           "location": "test",
+ *           "isNewbie": false,
+ *           "amountWillingToRisk": "100",
+ *           "isAwareOfScams": false,
+ *           "hasBeenScammed": false
+ *      },
+ *         ... 
+ *         ]
+ *
+ * @apiError (500 Internal server error) message Internal server error.
+ *
+ * @apiErrorExample Error-Response:
+ *
+ *  {
+ *     "statusCode": 500,
+ *     "message": "Internal server error"
+ *  }
+*/
+const fetchInvestors = async (req, res) => {
+  
+  try {
+    const investors =  await Investor.find()
+    if(investors.length > 0) {
+      const filteredInvestors =  investors.map((item) => {
+  const { name, gender, email, picture, password, phoneNumber, birthDate, location, isNewbie, amountWillingToRisk, isAwareOfScams, hasBeenScammed } = item
+
+        return { 
+          name, 
+          gender,
+          email,
+          picture,
+          password,
+          phoneNumber,
+          birthDate,
+          location,
+          isNewbie,
+          amountWillingToRisk,
+          isAwareOfScams,
+          hasBeenScammed
+        }
+      })
+
+      return res.json({ statusCode: 200, message: filteredInvestors })
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
+ return res.json({ statusCode: 500, message: errors.internal_server_error })
 }
 
 module.exports = {
-  createInvestor
+  createInvestor,
+  fetchInvestors
 }

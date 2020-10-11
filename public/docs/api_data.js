@@ -126,7 +126,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"name\": \"test\",\n  \"gender\": \"test\",\n  \"email\": \"email@mmo.com\",\n  \"picture\": \"test\",\n \"password\": \"test\",\n  \"phoneNumber\": \"test\",\n  \"birthDate\": \"01-01-1990\",\n  \"location\": \"test\",\n  \"isNewbie\": false,\n  \"amountWillingToRisk\": \"100\",\n  \"isAwareOfScams\": false,\n  \"hasBeenScammed\": false\n }",
+          "content": "{\n  \"name\": \"test\",\n  \"gender\": \"test\",\n  \"email\": \"email@mmo.com\",\n  \"picture\": \"test\",\n  \"password\": \"test\",\n  \"phoneNumber\": \"test\",\n  \"birthDate\": \"01-01-1990\",\n  \"location\": \"test\",\n  \"isNewbie\": false,\n  \"amountWillingToRisk\": \"100\",\n  \"isAwareOfScams\": false,\n  \"hasBeenScammed\": false\n }",
           "type": "json"
         }
       ]
@@ -147,6 +147,56 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "\n{\n   \"statusCode\": 200,\n   \"message\": \"Investor created successfully.\"\n}",
+          "type": "String"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "500 Internal server error": [
+          {
+            "group": "500 Internal server error",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Internal server error.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "{\n   \"statusCode\": 500,\n   \"message\": \"Internal server error\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./backend/controllers/investors.js",
+    "groupTitle": "Investor"
+  },
+  {
+    "type": "get",
+    "url": "/investor/fetch",
+    "title": "investor/fetch",
+    "name": "invester/fetch",
+    "group": "Investor",
+    "description": "<p>Returns a list of all investor users.</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Array of objects of investor users</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "\n{\n   \"statusCode\": 200,\n   \"message\":  [\n      {\n         \"name\": \"test\",\n          \"gender\": \"test\",\n         \"email\": \"email@mmo.com\",\n         \"picture\": \"test\",\n          \"password\": \"test\",\n          \"phoneNumber\": \"test\",\n         \"birthDate\": \"1989-12-31T22:00:00.000Z\",\n         \"location\": \"test\",\n         \"isNewbie\": false,\n         \"amountWillingToRisk\": \"100\",\n         \"isAwareOfScams\": false,\n         \"hasBeenScammed\": false\n    },\n       ... \n       ]",
           "type": "String"
         }
       ]
