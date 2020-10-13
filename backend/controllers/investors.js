@@ -1,5 +1,5 @@
-const Investor = require('../models/investors')
-const { errors } = require('../helpers')
+const Investor = require("../models/investors");
+const { errors } = require("../helpers");
 
 /**
  * @api {post} /investor/create/ investor/create
@@ -53,36 +53,49 @@ const { errors } = require('../helpers')
  *     "statusCode": 500,
  *     "message": "Internal server error"
  *  }
-*/
+ */
 
+const createInvestor = async (req, res) => {
+    const {
+        name,
+        gender,
+        email,
+        picture,
+        password,
+        phoneNumber,
+        birthDate,
+        location,
+        isNewbie,
+        amountWillingToRisk,
+        isAwareOfScams,
+        hasBeenScammed,
+    } = req.body;
 
-const createInvestor = async (req, res) => { 
-  const { name, gender, email, picture, password, phoneNumber, birthDate, location, isNewbie, amountWillingToRisk, isAwareOfScams, hasBeenScammed } = req.body
-  
-  const investor =  new Investor({ 
-    name,
-    gender,
-    email,
-    picture,
-    password,
-    phoneNumber,
-    birthDate,
-    location,
-    isNewbie,
-    amountWillingToRisk,
-    isAwareOfScams,
-    hasBeenScammed,
-  })
-  try {
-     await investor.save()
-    return res.json({ statuCode: 200, message: 'Investor created successfully.' })
-  } catch (error) {
-    console.log(error)
-  }
-  return res.json({ statusCode: 500, message: errors.internal_server_error })
-}
-
-
+    const investor = new Investor({
+        name,
+        gender,
+        email,
+        picture,
+        password,
+        phoneNumber,
+        birthDate,
+        location,
+        isNewbie,
+        amountWillingToRisk,
+        isAwareOfScams,
+        hasBeenScammed,
+    });
+    try {
+        await investor.save();
+        return res.json({
+            statuCode: 200,
+            message: "Investor created successfully.",
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    return res.json({ statusCode: 500, message: errors.internal_server_error });
+};
 
 /**
  * @api {get} /investor/all investor/all
@@ -112,7 +125,7 @@ const createInvestor = async (req, res) => {
  *           "isAwareOfScams": false,
  *           "hasBeenScammed": false
  *      },
- *         ... 
+ *         ...
  *         ]
  *
  * @apiError (500 Internal server error) message Internal server error.
@@ -123,41 +136,53 @@ const createInvestor = async (req, res) => {
  *     "statusCode": 500,
  *     "message": "Internal server error"
  *  }
-*/
+ */
 const fetchInvestors = async (req, res) => {
-  
-  try {
-    const investors =  await Investor.find()
-    if(investors.length > 0) {
-      const filteredInvestors =  investors.map((item) => {
-  const { name, gender, email, picture, password, phoneNumber, birthDate, location, isNewbie, amountWillingToRisk, isAwareOfScams, hasBeenScammed } = item
+    try {
+        const investors = await Investor.find();
+        if (investors.length > 0) {
+            const filteredInvestors = investors.map((item) => {
+                const {
+                    name,
+                    gender,
+                    email,
+                    picture,
+                    password,
+                    phoneNumber,
+                    birthDate,
+                    location,
+                    isNewbie,
+                    amountWillingToRisk,
+                    isAwareOfScams,
+                    hasBeenScammed,
+                } = item;
 
-        return { 
-          name, 
-          gender,
-          email,
-          picture,
-          password,
-          phoneNumber,
-          birthDate,
-          location,
-          isNewbie,
-          amountWillingToRisk,
-          isAwareOfScams,
-          hasBeenScammed
+                return {
+                    name,
+                    gender,
+                    email,
+                    picture,
+                    password,
+                    phoneNumber,
+                    birthDate,
+                    location,
+                    isNewbie,
+                    amountWillingToRisk,
+                    isAwareOfScams,
+                    hasBeenScammed,
+                };
+            });
+
+            return res.json({ statusCode: 200, message: filteredInvestors });
         }
-      })
-
-      return res.json({ statusCode: 200, message: filteredInvestors })
+    } catch (error) {
+        console.log(error);
     }
-  } catch (error) {
-    console.log(error)
-  }
 
- return res.json({ statusCode: 500, message: errors.internal_server_error })
-}
+    return res.json({ statusCode: 500, message: errors.internal_server_error });
+};
 
 module.exports = {
-  createInvestor,
-  fetchInvestors
-}
+    createInvestor,
+    fetchInvestors,
+};

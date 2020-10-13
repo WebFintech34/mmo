@@ -1,5 +1,5 @@
-const Trader = require('../models/traders')
-const { errors } = require('../helpers')
+const Trader = require("../models/traders");
+const { errors } = require("../helpers");
 
 /**
  * @api {post} /trader/create/ trader/create
@@ -35,7 +35,7 @@ const { errors } = require('../helpers')
  *   "yearsOfExperience": "test",
  *   "brokersUsed": "test",
  *   "isCommittedToEndScams": true
- * 
+ *
  *  }
  *
  * @apiSuccess {String} message Trader created successfully..
@@ -54,34 +54,49 @@ const { errors } = require('../helpers')
  *     "statusCode": 500,
  *     "message": "Internal server error"
  *  }
-*/
+ */
 
+const createTrader = async (req, res) => {
+    const {
+        name,
+        gender,
+        email,
+        picture,
+        password,
+        phoneNumber,
+        birthDate,
+        location,
+        tradingStyle,
+        yearsOfExperience,
+        brokersUsed,
+        isCommittedToEndScams,
+    } = req.body;
 
-const createTrader = async (req, res) => { 
-  const { name, gender, email, picture, password, phoneNumber, birthDate, location, tradingStyle, yearsOfExperience, brokersUsed, isCommittedToEndScams } = req.body
-  
-  const trader =  new Trader({ 
-    name,
-    gender,
-    email,
-    picture,
-    password,
-    phoneNumber,
-    birthDate,
-    location,
-    tradingStyle,
-    yearsOfExperience,
-    brokersUsed,
-    isCommittedToEndScams 
-  })
-  try {
-     await trader.save()
-    return res.json({ statuCode: 200, message: 'Trader created successfully.' })
-  } catch (error) {
-    console.log(error)
-  }
-  return res.json({ statusCode: 500, message: errors.internal_server_error })
-}
+    const trader = new Trader({
+        name,
+        gender,
+        email,
+        picture,
+        password,
+        phoneNumber,
+        birthDate,
+        location,
+        tradingStyle,
+        yearsOfExperience,
+        brokersUsed,
+        isCommittedToEndScams,
+    });
+    try {
+        await trader.save();
+        return res.json({
+            statuCode: 200,
+            message: "Trader created successfully.",
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    return res.json({ statusCode: 500, message: errors.internal_server_error });
+};
 
 /**
  * @api {get} /trader/all trader/all
@@ -111,7 +126,7 @@ const createTrader = async (req, res) => {
  *           "brokersUsed": "test",
  *           "isCommittedToEndScams": true
  *      },
- *         ... 
+ *         ...
  *         ]
  *
  * @apiError (500 Internal server error) message Internal server error.
@@ -122,41 +137,53 @@ const createTrader = async (req, res) => {
  *     "statusCode": 500,
  *     "message": "Internal server error"
  *  }
-*/
+ */
 const fetchTraders = async (req, res) => {
-  
-  try {
-    const traders =  await Trader.find()
-    if(traders.length > 0) {
-      const filteredTraders =  traders.map((item) => {
-  const { name, gender, email, picture, password, phoneNumber, birthDate, location, tradingStyle, yearsOfExperience, brokersUsed, isCommittedToEndScams } = item
+    try {
+        const traders = await Trader.find();
+        if (traders.length > 0) {
+            const filteredTraders = traders.map((item) => {
+                const {
+                    name,
+                    gender,
+                    email,
+                    picture,
+                    password,
+                    phoneNumber,
+                    birthDate,
+                    location,
+                    tradingStyle,
+                    yearsOfExperience,
+                    brokersUsed,
+                    isCommittedToEndScams,
+                } = item;
 
-        return { 
-          name, 
-          gender,
-          email,
-          picture,
-          password,
-          phoneNumber,
-          birthDate,
-          location,
-          tradingStyle,
-          yearsOfExperience,
-          brokersUsed,
-          isCommittedToEndScams 
+                return {
+                    name,
+                    gender,
+                    email,
+                    picture,
+                    password,
+                    phoneNumber,
+                    birthDate,
+                    location,
+                    tradingStyle,
+                    yearsOfExperience,
+                    brokersUsed,
+                    isCommittedToEndScams,
+                };
+            });
+
+            return res.json({ statusCode: 200, message: filteredTraders });
         }
-      })
-
-      return res.json({ statusCode: 200, message: filteredTraders })
+    } catch (error) {
+        console.log(error);
     }
-  } catch (error) {
-    console.log(error)
-  }
 
- return res.json({ statusCode: 500, message: errors.internal_server_error })
-}
+    return res.json({ statusCode: 500, message: errors.internal_server_error });
+};
 
 module.exports = {
-  createTrader,
-  fetchTraders
-}
+    createTrader,
+    fetchTraders,
+};
