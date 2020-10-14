@@ -127,7 +127,7 @@ ul li:hover a{
   list-style-type: none;
   color: red;
   transform: scale(1.05);
-      box-shadow: 4px 4px 10px 0 rgba(0,0,0,.1), -4px -4px 10px rgba(255,255,255,1);
+  box-shadow: 3px 4px 10px 0 rgba(0,0,0,.1), -3px -4px 10px rgba(255,255,255,1);
 }
 .sidebar ul a i{
   margin-right: 16px;
