@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const router = require("./backend/routes");
-
+const jwt = require('jsonwebtoken');
 dotenv.config();
 
 console.log(process.env.MONGO_URL);
@@ -60,8 +60,35 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(`${__dirname}/client/build/index.html`));
 });
 
+//setup tokens for Authetication using jwt
+app.post('/login', (req, res)=>{
+    //Authenticate User
+
+    const username = req.body.username
+    const user ={name: username}
+
+    const accessToken = jwt.sign( user,
+        process.env.ACCESS_TOKEN_SECRET, {expiresIn : '1h'})
+
+        req.json({accessToken: accessToken})
+})
+
+function authenticatetoken ( req, res, next) {
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    if (token == null) return res.sendStatus(401)
+
+    jwt.verify(token,
+    process.env.ACCESS_TOKEN_SECRET, (err, user) =>
+    {
+        if (err) return res.sendStatus(403)
+        req.user = user
+        next()
+    })
+}
+
 // Choose the port and start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Mixing it up on port ${PORT}`);
 });
