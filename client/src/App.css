@@ -1,23 +1,49 @@
-.App {
+.login,
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 2em;
     white-space: pre;
 }
-.App code {
-    margin: 2em;
-    margin-top: 0;
-    padding: 0;
-    text-align: left;
-    font-size: 2em;
+
+ul {
+    list-style-type: none;
 }
-h3 {
-    font-size: 2.5em;
-    margin: 1em;
-    padding: 0;
-    border: 0;
+
+a {
+    color: black;
+    text-decoration: none;
 }
+
+header {
+    font-size: 1.2rem;
+}
+
+header.anonymous ul.left-side {
+    display: inline-block;
+    margin: 0rem;
+    margin-left: 1rem;
+    padding: 0.5em;
+}
+
+header.anonymous ul.right-side {
+    display: inline;
+    float: right;
+    margin: 0rem;
+    margin-right: 1rem;
+    padding: 0.5em;
+    list-style-type: none;
+}
+
+header.anonymous ul li {
+    display: inline;
+    margin-left: 1rem;
+}
+
+footer {
+}
+
 button {
     font-size: 1em;
     font-family: "Courier New", monospace;
@@ -25,18 +51,22 @@ button {
     border-radius: 0.3rem;
     padding: 10px 25px;
 }
+
 button:hover {
     color: white;
     background-color: #2e86c1;
 }
+
 button:active {
     background-color: #85c1e9;
 }
+
 form {
     display: flex;
     flex-direction: column;
     font-family: "Courier New", monospace;
 }
+
 input {
     font-size: 1.2em;
     margin-top: 0.5em;

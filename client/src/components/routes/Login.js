@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Login = ({ setIsLoggedIn }) => {
     return (
-        <div>
+        <div className="login">
             <h1>Login Page</h1>
             <form>
                 <label htmlFor="username">Username</label>
@@ -20,7 +20,8 @@ const Login = ({ setIsLoggedIn }) => {
                 ></input>
                 <button onClick={() => setIsLoggedIn(true)}> sign in</button>
             </form>
-            <Link to="/"> home</Link>
+            <br></br>
+            <Link to="/"> back home</Link>
         </div>
     );
 };
