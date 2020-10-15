@@ -30,18 +30,17 @@ const Home = () => {
                     <Link to="/register"> SIGN UP</Link>
                 </nav>
             </header>
-            <main className="content">
-                <h1>Mmo Home Page</h1>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <h2>Banner goes here</h2>
+            <main className="banner main-content">
+                <div>
+                    <h1>Mmo Home Page</h1>
+                    <h1> Banner goes here</h1>
+                </div>
             </main>
             <footer className="anonymous">
-                <nav className="anonymous-bottom"> </nav>
+                {/* <nav className="anonymous-bottom">
+                    <Link to="/"> PLATFORM</Link>
+                    <Link to="/"> EDUCATION</Link>
+                </nav> */}
             </footer>
         </div>
     );

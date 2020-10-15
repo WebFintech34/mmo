@@ -1,10 +1,7 @@
-.login,
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 2em;
-    white-space: pre;
+.main-content {
+    display: grid;
+    place-items: center;
+    height: 80vh;
 }
 
 .fa-bars {
@@ -29,6 +26,11 @@ a {
 
 header {
     font-size: 1.1rem;
+    height: 5vh;
+}
+
+footer {
+    height: 5vh;
 }
 
 nav {
