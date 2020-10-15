@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const errors = {
     missing_mandatory_paramaters: "Missing mandatory parameters",
     internal_server_error: "Internal server error",
+    current_password_incorrect: 'Current password is incorrect',
 };
 
 const success = {
