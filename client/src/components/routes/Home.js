@@ -1,32 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+    const [showMenu, setShowMenu] = useState(false);
+
     return (
-        <div>
+        <div className="home-page">
             <header className="anonymous">
-                <ul className="left-side">
-                    <li>
-                        <Link to="/"> PLATFORM</Link>
-                    </li>
-                    <li>
-                        <Link to="/"> EDUCATION</Link>
-                    </li>
-                    <li>
-                        <Link to="/"> SUPPORT</Link>
-                    </li>
-                    <li>
-                        <Link to="/"> NEWSLATER</Link>
-                    </li>
-                </ul>
-                <ul className="right-side">
-                    <li>
-                        <Link to="/login"> LOGIN</Link>
-                    </li>
-                    <li>
-                        <Link to="/register"> SIGN UP</Link>
-                    </li>
-                </ul>
+                <i
+                    onClick={() => setShowMenu(!showMenu)}
+                    className="fas fa-2x fa-bars"
+                ></i>
+                {showMenu && (
+                    <i
+                        onClick={() => setShowMenu(!showMenu)}
+                        className="fas fa-2x fa-times"
+                    ></i>
+                )}
+                <nav
+                    className={`anonymous-top ${
+                        showMenu ? "anonymous-top-show" : "anonymous-top-hide"
+                    }`}
+                >
+                    <Link to="/"> PLATFORM</Link>
+                    <Link to="/"> EDUCATION</Link>
+                    <Link to="/"> SUPPORT</Link>
+                    <Link to="/"> NEWSLATER</Link>
+                    <Link to="/login"> LOGIN</Link>
+                    <Link to="/register"> SIGN UP</Link>
+                </nav>
             </header>
             <main className="content">
                 <h1>Mmo Home Page</h1>
@@ -38,7 +40,9 @@ const Home = () => {
                 <br></br>
                 <h2>Banner goes here</h2>
             </main>
-            <footer></footer>
+            <footer className="anonymous">
+                <nav className="anonymous-bottom"> </nav>
+            </footer>
         </div>
     );
 };
