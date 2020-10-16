@@ -1,73 +1,48 @@
-import React, { Component, useContext, useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
-import "./App.css";
-import Home from "./components/routes/Home";
-import Register from "./components/routes/Register";
-import Login from "./components/routes/Login";
-import Dashboard from "./components/routes/Dashboard";
-import Default from "./components/routes/Default";
-import UserContext from "./userContext";
-import { useHistory } from "react-router-dom";
-import { login } from "./apiCalls";
-
-const App = () => {
-    let history = useHistory();
-
-    // todo: replace this a valid token implementation
-    let [isLoggedIn, setIsLoggedIn] = useState(
-        window.localStorage.getItem("isLoggedIn") === "1" ? true : false
-    );
-
-    useEffect(() => {
-        const isLoggedInStorage = window.localStorage.getItem("isLoggedIn");
-        if (
-            isLoggedInStorage === "0" &&
-            !["/login", "/register"].includes(history.location.pathname)
-        ) {
-            history.push("/");
-        }
-    }, []);
-
-    useEffect(() => {
-        const isLoggedInStorage = window.localStorage.getItem("isLoggedIn");
-        if (!isLoggedIn && isLoggedInStorage === "1") {
-            window.localStorage.setItem("isLoggedIn", "0");
-        } else if (
-            (isLoggedInStorage === "0" || !isLoggedInStorage) &&
-            isLoggedIn
-        ) {
-            window.localStorage.setItem("isLoggedIn", "1");
-        }
-    }, [isLoggedIn]);
-
+import React, { Component } from 'react'
+import './App.css'
+class App extends Component {
+  state = {
+    cow: '',
+    text: ''
+  }
+componentDidMount() {
+    this.fetchCow()
+  }
+fetchCow = async () => {
+    const response = await fetch(`/api/cow`)
+    const initialCow = await response.json()
+    const cow = initialCow.moo
+    this.setState({ cow })
+  }
+customCow = async evt => {
+    evt.preventDefault()
+    const text = this.state.text
+    const response = await fetch(`/api/cow/${text}`)
+    const custom = await response.json()
+    const cow = custom.moo
+    this.setState({ cow, text: '' })
+  }
+handleChange = evt => {
+    this.setState({ [evt.target.name]: evt.target.value })
+    console.log(this.state.text)
+  }
+render() {
     return (
-        <div className="App">
-            {isLoggedIn ? (
-                <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-                    <Switch>
-                        <Route path="/" component={Dashboard} />
-                        <Route exact path="/dashboard" component={Dashboard} />
-                        <Route component={Default} />
-                    </Switch>
-                </UserContext.Provider>
-            ) : (
-                <Switch>
-                    <Route
-                        path="/login"
-                        render={(props) => (
-                            <Login
-                                {...props}
-                                setIsLoggedIn={setIsLoggedIn}
-                            ></Login>
-                        )}
-                    />
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/home" component={Home} />
-                    <Route path="/" component={Home} />
-                </Switch>
-            )}
-        </div>
-    );
-};
-
-export default App;
+      <div className="App">
+        <h3>Text Cow. Moo</h3>
+        <code>{this.state.cow}</code>
+        <form onSubmit={this.customCow}>
+          <label>Custom Cow Text:</label>
+          <input
+            type="text"
+            name="text"
+            value={this.state.text}
+            onChange={this.handleChange}
+          />
+          <button type="submit">Show me a talking cow!</button>
+        </form>
+      </div>
+    )
+  }
+}
+export default App

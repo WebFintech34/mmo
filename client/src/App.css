@@ -1,115 +1,43 @@
-.main-content {
-    display: grid;
-    place-items: center;
-    height: 80vh;
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2em;
+  white-space: pre
 }
-
-.fa-bars {
-    cursor: pointer;
-    position: relative;
-    top: 9px;
-    left: 12px;
+.App code {
+  margin: 2em;
+  margin-top: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 2em;
 }
-
-.fa-times {
-    position: absolute;
-    top: 2px;
-    right: 8px;
-    cursor: pointer;
-    z-index: 2;
+h3 {
+  font-size: 2.5em;
+  margin: 1em;
+  padding: 0;
+  border: 0
 }
-
-a {
-    color: black;
-    text-decoration: none;
-}
-
-header {
-    font-size: 1.1rem;
-    height: 5vh;
-}
-
-footer {
-    height: 5vh;
-}
-
-nav {
-    padding: 0.5rem;
-}
-
-nav a {
-    margin-left: 1rem;
-}
-
 button {
-    font-size: 1em;
-    font-family: "Courier New", monospace;
-    border: none;
-    border-radius: 0.3rem;
-    padding: 10px 25px;
+  font-size: 1em;
+  font-family: "Courier New", monospace;
+  border: 2px solid #000;
+  padding: 10px 25px;
 }
-
 button:hover {
-    color: white;
-    background-color: #2e86c1;
+  background-color: rgb(255, 235, 59);
 }
-
 button:active {
-    background-color: #85c1e9;
+  background-color: rgb(255, 244, 142);
 }
-
 form {
-    display: flex;
-    flex-direction: column;
-    font-family: "Courier New", monospace;
+  display: flex;
+  flex-direction: column;
+  font-family: "Courier New", monospace;
 }
-
 input {
-    font-size: 1.2em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    border: 1px solid grey;
-    border-radius: 0.3rem;
-    padding: 5px;
-}
-
-@media only screen and (max-width: 600px) {
-    .anonymous-top-hide {
-        display: none;
-    }
-
-    .anonymous-top-show {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        position: absolute;
-        background-color: #0099e6;
-        top: 0;
-        margin: 0;
-        padding: 0;
-        justify-content: start;
-    }
-
-    .anonymous-top-show a:first-child {
-        margin-top: 100px;
-    }
-
-    .anonymous-top-show a {
-        margin-top: 12px;
-        text-align: center;
-        font-size: 2rem;
-    }
-}
-
-@media only screen and (min-width: 600px) {
-    .fa-bars {
-        display: none;
-    }
-
-    nav a:nth-last-child(1),
-    nav a:nth-last-child(2) {
-        float: right;
-    }
+  font-size: 1.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: 1px solid grey
 }
