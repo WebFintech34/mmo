@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const jwt = require("jsonwebtoken")
 
 const errors = {
     missing_mandatory_paramaters: "Missing mandatory parameters",
@@ -63,11 +64,25 @@ const success = {
     const match = await bcrypt.compare(password, hash)
     return match
   }
+
+  function authenticateToken ( req, res, next) {
+    const authHeader = req.headers.authorization
+    const token = authHeader && authHeader.split('Bearer ')[1]
+    if (token == null) return res.sendStatus(401)
+
+    jwt.verify(token,process.env.ACCESS_TOKEN_SECRET, (err, user) =>
+    {
+        if (err) return res.json({ statusCode: 403, message: 'jwt must be provided.' })
+        req.user = user
+        next()
+    })
+}
   
 
 module.exports = {
     errors,
     success,
     hashPassword,
-    comparePasswordHash
+    comparePasswordHash,
+    authenticateToken
 };
