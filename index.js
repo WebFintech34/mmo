@@ -1,30 +1,38 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 const express = require('express')
 const cowsay = require('cowsay')
 const cors = require('cors')
 const path = require('path')
 =======
+=======
+>>>>>>> upstream/develop
 const express = require("express");
-const cowsay = require("cowsay");
 const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const router = require("./backend/routes");
-
+const jwt = require("jsonwebtoken");
 dotenv.config();
+<<<<<<< HEAD
+>>>>>>> upstream/develop
+=======
 >>>>>>> upstream/develop
 
 console.log(process.env.MONGO_URL);
 
 // Create the server
 <<<<<<< HEAD
+<<<<<<< HEAD
 const app = express()
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')))
 =======
+=======
+>>>>>>> upstream/develop
 const app = express();
 // database connection
 mongoose
@@ -46,6 +54,7 @@ router(app);
 
 // API docs
 app.use("/apidoc", express.static("public/docs"));
+<<<<<<< HEAD
 >>>>>>> upstream/develop
 
 // Serve our api route /cow that returns a custom talking text cow
@@ -68,6 +77,8 @@ app.get("/api/cow/", cors(), async (req, res, next) => {
         next(err);
     }
 });
+=======
+>>>>>>> upstream/develop
 
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {

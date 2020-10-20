@@ -1,5 +1,11 @@
 node_modules 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+/.env
+
+public
+>>>>>>> upstream/develop
 =======
 /.env
 

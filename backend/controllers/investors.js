@@ -1,5 +1,9 @@
 const Investor = require("../models/investors");
+<<<<<<< HEAD
 const { errors } = require("../helpers");
+=======
+const { errors, hashPassword } = require("../helpers");
+>>>>>>> upstream/develop
 
 /**
  * @api {post} /investor/create/ investor/create
@@ -71,12 +75,21 @@ const createInvestor = async (req, res) => {
         hasBeenScammed,
     } = req.body;
 
+<<<<<<< HEAD
+=======
+    const hashedPassword = await hashPassword(password);
+
+>>>>>>> upstream/develop
     const investor = new Investor({
         name,
         gender,
         email,
         picture,
+<<<<<<< HEAD
         password,
+=======
+        password: hashedPassword,
+>>>>>>> upstream/develop
         phoneNumber,
         birthDate,
         location,

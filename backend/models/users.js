@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
+<<<<<<< HEAD
     name: {
+=======
+    username: {
+>>>>>>> upstream/develop
         type: String,
         required: true,
         trim: true,
@@ -15,7 +19,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/develop
     created: {
         type: Date,
         default: Date.now(),
