@@ -1,4 +1,4 @@
-import React, { Component, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./components/routes/Home";
@@ -8,7 +8,8 @@ import Dashboard from "./components/routes/Dashboard";
 import Default from "./components/routes/Default";
 import UserContext from "./userContext";
 import { useHistory } from "react-router-dom";
-import { login } from "./apiCalls";
+//import { login } from "./apiCalls";
+import NavBarTop from "./components/NavBars/NavBarTop";
 
 const App = () => {
     let history = useHistory();
@@ -26,7 +27,7 @@ const App = () => {
         ) {
             history.push("/");
         }
-    }, []);
+    }, [] );
 
     useEffect(() => {
         const isLoggedInStorage = window.localStorage.getItem("isLoggedIn");
@@ -42,6 +43,7 @@ const App = () => {
 
     return (
         <div className="App">
+            <NavBarTop/>
             {isLoggedIn ? (
                 <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
                     <Switch>

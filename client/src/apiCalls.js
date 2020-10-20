@@ -8,4 +8,5 @@ const callMmoApi = ({ method, url, params }) => {
 
 export const login = async ({ method, url, params }) => {
     const data = await callMmoApi({ method, url, params });
+    return data
 };
