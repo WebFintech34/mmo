@@ -31,7 +31,8 @@
     "he": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
-    "xmldom": "^0.3.0"
+    "xmldom": "^0.3.0",
+    "react-hook-form": "^6.9.4"
   },
   "devDependencies": {
     "eslint": "^7.11.0",

@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const router = require("./backend/routes");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 dotenv.config();
 
 console.log(process.env.MONGO_URL);
@@ -32,7 +32,6 @@ router(app);
 
 // API docs
 app.use("/apidoc", express.static("public/docs"));
-
 
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {
