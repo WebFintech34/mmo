@@ -139,7 +139,7 @@ export default function Register() {
                         </button>
                     </div>
                     <p class="text-center">
-                        Have an account? <a href="login.html">Log In</a>
+                        Have an account? <a href="/login">Log In</a>
                     </p>
                 </form>
                 <Link to="/"> back home</Link>
