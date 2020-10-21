@@ -49,6 +49,7 @@ const App = () => {
                 <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
                     <Switch>
                         <Route path="/" component={Dashboard} />
+                        <Route exact path="/dashboard" component={Dashboard} />
                         <Route component={Default} />
                     </Switch>
                 </UserContext.Provider>
@@ -63,7 +64,7 @@ const App = () => {
                             ></Login>
                         )}
                     />
-                    <Route exact path="/dashboard" component={Dashboard} />
+                    
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/home" component={Home} />
                     <Route path="/" component={Home} />
