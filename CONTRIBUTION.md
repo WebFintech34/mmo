@@ -1,15 +1,60 @@
 # To get started.
-* Create a feature branch for any issue you want to resolve.
 
-        ``` eg. git branch login```.
+* Get repo
+ ```
+1. Fork repository the <upstream> organization repo
+2. Clone your fork git clone <your fork url>
+3. Set upstream git remote add upstream <upstream url>
+ ```
 
-* checkout to that branch.
+* Before any work ensure you are up to date with upstream 
+ ```
+4. git fetch upstream
+5. git merge upstream/develop
+ ```
 
-         ``` git checkout login```
-* Implement the said feature
+* Install packages to check work locally 
+ ```
+5. Install backend packages npm install
+6. Install front end packages cd client && npm install 
+ ```
 
-* Commit your changes.
- 
-        ``` your commit message should include what you did, just a brief one ```
-* Raise a pull request to the develop branch.
-* Once your pull request has been reviewed your work will be merged        
+* Create your feature branch issue and work in it
+ ```
+7. New branch git branch <feature or issue name>
+8. Move into git checkout <feature or issue name>
+ ```
+
+* Implement your features and commit changes
+ ```
+9. git add . 
+1. git commit m "short clear message"
+ ```
+
+* Check work locally 
+ ```
+11. Front End Only npm run client
+    Back End Only npm run server
+    Entire app npm run dev
+  ```
+
+* Create pull request
+ ```
+13. git push --set-upstream origin <feature or issue name>
+ ```
+
+* Next work 
+ ```
+14. Start at number 4
+ ```
+
+* Udate master for ...admins only
+```
+15. 
+git checkout develop
+git pull origin develop
+git checkout master
+git merge develop
+git push origin master
+ ```
+
