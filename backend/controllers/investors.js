@@ -1,5 +1,5 @@
 const Investor = require("../models/investors");
-const { errors } = require("../helpers");
+const { errors, hashPassword } = require("../helpers");
 
 /**
  * @api {post} /investor/create/ investor/create
@@ -71,12 +71,14 @@ const createInvestor = async (req, res) => {
         hasBeenScammed,
     } = req.body;
 
+    const hashedPassword = await hashPassword(password);
+
     const investor = new Investor({
         name,
         gender,
         email,
         picture,
-        password,
+        password: hashedPassword,
         phoneNumber,
         birthDate,
         location,

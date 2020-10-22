@@ -1,5 +1,6 @@
 const Trader = require("../models/traders");
-const { errors } = require("../helpers");
+const { errors, hashPassword } = require("../helpers");
+const { hash } = require("bcrypt");
 
 /**
  * @api {post} /trader/create/ trader/create
@@ -72,12 +73,14 @@ const createTrader = async (req, res) => {
         isCommittedToEndScams,
     } = req.body;
 
+    const hashedPassword = await hashPassword(password);
+
     const trader = new Trader({
         name,
         gender,
         email,
         picture,
-        password,
+        password: hashedPassword,
         phoneNumber,
         birthDate,
         location,
