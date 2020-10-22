@@ -6,9 +6,9 @@ const GeneratePagesBlock = ({numPages,currPage,handlePageChange}) => {
    return (
 
         <div className ="pagination">
-          <span >-</span >
+          <span onClick = {handlePageChange} >-</span >
           {holder.map(i => i !== currPage? <span key = {i} onClick = {handlePageChange}>{i}</span> :<span key = {i} onClick = {handlePageChange} className = "active">{i}</span>) }          
-          <span >+</span>
+          <span onClick = {handlePageChange} >+</span>
         </div>
 
     )
