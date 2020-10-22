@@ -1,46 +1,4 @@
 .main-content {
-<<<<<<< HEAD
-  display: grid;
-  place-items: center;
-  height: 80vh;
-}
-
-.fa-bars {
-  cursor: pointer;
-  position: relative;
-  top: 9px;
-  left: 12px;
-}
-
-.fa-times {
-  position: absolute;
-  top: 2px;
-  right: 8px;
-  cursor: pointer;
-  z-index: 2;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-}
-
-header {
-  font-size: 1.1rem;
-  height: 5vh;
-}
-
-footer {
-  height: 5vh;
-}
-
-nav {
-  padding: 0.5rem;
-}
-
-nav a {
-  margin-left: 1rem;
-=======
     display: grid;
     place-items: center;
     height: 80vh;
@@ -81,7 +39,6 @@ nav {
 
 nav a {
     margin-left: 1rem;
->>>>>>> 12e0be0bbbe2e4fe328bd601dbdbf0db771d5497
 }
 
 button {
@@ -146,18 +103,6 @@ input {
   }
 }
 
-<<<<<<< HEAD
-@media only screen and (min-width: 600px) {
-  .fa-bars {
-      display: none;
-  }
-
-  nav a:nth-last-child(1),
-  nav a:nth-last-child(2) {
-      float: right;
-  }
-}
-=======
 @media only screen and (max-width: 600px) {
     .anonymous-top-hide {
         display: none;
@@ -198,4 +143,3 @@ input {
         float: right;
     }
 }
->>>>>>> 12e0be0bbbe2e4fe328bd601dbdbf0db771d5497

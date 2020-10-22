@@ -1,9 +1,6 @@
 import React, { Component, useContext, useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import "./assets/scss/black-dashboard-react.scss";
-import "./assets/demo/demo.css";
-import "./assets/css/nucleo-icons.css";
 import Home from "./components/routes/Home";
 import Register from "./components/routes/Register";
 import Login from "./components/routes/Login";
