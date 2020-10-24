@@ -61,6 +61,7 @@ const App = () => {
                             ></Login>
                         )}
                     />
+                    
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/home" component={Home} />
                     <Route path="/" component={Home} />
