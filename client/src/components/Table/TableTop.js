@@ -1,7 +1,6 @@
 import React from "react";
 import GeneratePagesBlock from "./GeneratePagesBlock";
 
-import "./TableTop.css"
 
 const TableTop = ({currPage ,numPages,handleSearchChange, handleSelectChange, handlePageChange,filter }) => {  
 

@@ -1,12 +1,16 @@
-import React from "react";
-import Main from "../Main/Main";
+import React from "react"
+import Intro from "../HomeComponents/Intro"
+import NavBar from "../NavBars/NavBar"
+import NavBarBottom from "../NavBars/NavBarBottom"
 
 const Home = () => {
-
+    
     return (
-
-        <Main/>
-
+        <>
+            <NavBar />
+            <Intro/>
+            <NavBarBottom/>
+        </>
     );
 };
 

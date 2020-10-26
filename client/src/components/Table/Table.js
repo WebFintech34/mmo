@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import TableTop from "./TableTop";
-import "./Table.css"
-//import UserContext from "../../userContext";
+import React, { useState } from "react"
+import TableTop from "./TableTop"
+//import UserContext from "../../userContext"
 
 // below data can be used as initial placeholder data 
 import allTradersResult  from "./allTradersResult";
-//import allInvestorsResult  from "./allInvestorsResult";
+//import allInvestorsResult  from "./allInvestorsResult"
 
-//import {login} from "../../apiCalls";
+//import {login} from "../../apiCalls"
  
 const allTaders  = allTradersResult["message"];
 //const allInvestorsResult  = allInvestorsResult.message;
@@ -20,10 +19,10 @@ const chunk = (arr, chunkSize) => {
   return R;
 }
 
-const Table = () => {
+const Table = ({ data }) => {
 
-    const [allTraders, setAllTraders]       = useState(allTaders);
-    const [tradersToShow, setTradersToShow] = useState(allTaders);
+    const [allTraders, setAllTraders]       = useState(data);
+    const [tradersToShow, setTradersToShow] = useState(data);
     const [numTraders, setNumTraders]       = useState(tradersToShow.length);
     const [numPerPage, setNumPerPage]       = useState(5);
     const [currPage, setCurrPage]           = useState(1);    
@@ -39,17 +38,22 @@ const Table = () => {
       }, []);
     */
 
+  const handleOne = (e) => {
+    console.log("show modal a single trader")
+}
+
    const one   = allTraders[0];
+
    const headers  = Object.keys(one)
    const headersCap = headers.map(str => str.slice(0,1).toUpperCase() + str.slice(1));
 
-   const tableGenerator = (allArray) => {     
+   const tableGenerator = () => {     
 
     // allArray can be traders, investors or any other arr Data we want in table like this 
     const toRender = () => {   
       let check = chunksPages[currPage-1].length === 0 ? [] : chunksPages[currPage-1]
       let toShow = check.map((one,i) => (      
-        <tr key = {i} >
+        <tr onClick = {handleOne}  key = {i} >
             {headers.map((header,i)  => header!=="picture"? <td key = {i}>{one[header]}</td>:<td key = {i}><img src = {one[header]} alt = {one["name"]}/></td>)}
         </tr>
         ) 
@@ -116,7 +120,7 @@ const Table = () => {
                       handlePageChange = {handlePageChange}
                       filter = {filter} 
             />
-            {tableGenerator(tradersToShow)}
+            {tableGenerator()}
         </div>
     );
 };

@@ -1,26 +1,30 @@
 import React, { useContext } from "react";
 import UserContext from "../../userContext";
 import Table from "../Table/Table";
+import allTradersResult  from "../Table/allTradersResult";
+import allInvestorsResult  from "../Table/allInvestorsResult"
 
 const Dashboard = () => {
+
     const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+
     return (
-        <div className="main-content">
             <div>
-                <h1>Dashboard Page</h1>
+                <h1>Welcome XXX To Your Dashboard!</h1>
                 
-                {isLoggedIn && (
+                {isLoggedIn &&   (
                     <>
-                    <Table/> 
-                    <button onClick={() => setIsLoggedIn(false)}>
+                    <Table data = {allTradersResult.message} />
+                   <button onClick={() => setIsLoggedIn(false)}>
                         {" "}
                         sign off
                     </button>
+                    
                     </>
                 )}
             </div>
-        </div>
     );
+
 };
 
 export default Dashboard;
